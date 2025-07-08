@@ -10,7 +10,16 @@ import { Login } from "@/pages/Login";
 import { Signup } from "@/pages/Signup";
 import { AdminDashboard } from "@/pages/admin/AdminDashboard";
 import { AdminUsers } from "@/pages/admin/AdminUsers";
+import { AdminCars } from "@/pages/admin/AdminCars";
+import { AdminAppointments } from "@/pages/admin/AdminAppointments";
+import { AdminNotifications } from "@/pages/admin/AdminNotifications";
+import { AdminSettings } from "@/pages/admin/AdminSettings";
 import { UserDashboard } from "@/pages/user/UserDashboard";
+import { UserCars } from "@/pages/user/UserCars";
+import { UserAppointments } from "@/pages/user/UserAppointments";
+import { UserSubscription } from "@/pages/user/UserSubscription";
+import { UserProfile } from "@/pages/user/UserProfile";
+import { UserFeedback } from "@/pages/user/UserFeedback";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -72,6 +81,46 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
+      <Route 
+        path="/admin/cars" 
+        element={
+          <ProtectedRoute requireAdmin>
+            <Layout>
+              <AdminCars />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/appointments" 
+        element={
+          <ProtectedRoute requireAdmin>
+            <Layout>
+              <AdminAppointments />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/notifications" 
+        element={
+          <ProtectedRoute requireAdmin>
+            <Layout>
+              <AdminNotifications />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/settings" 
+        element={
+          <ProtectedRoute requireAdmin>
+            <Layout>
+              <AdminSettings />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
       
       {/* User Routes */}
       <Route 
@@ -80,6 +129,56 @@ const AppRoutes = () => {
           <ProtectedRoute>
             <Layout>
               <UserDashboard />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/cars" 
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <UserCars />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/appointments" 
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <UserAppointments />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/subscription" 
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <UserSubscription />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/profile" 
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <UserProfile />
+            </Layout>
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/user/feedback" 
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <UserFeedback />
             </Layout>
           </ProtectedRoute>
         } 

@@ -50,12 +50,13 @@ const userMenuItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const { isAdmin, logout } = useAuth();
   
   const menuItems = isAdmin ? adminMenuItems : userMenuItems;
   const currentPath = location.pathname;
+  const isCollapsed = state === "collapsed";
 
   const isActive = (path: string) => currentPath === path;
   
@@ -66,13 +67,13 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={`${collapsed ? 'w-16' : 'w-64'} border-r border-wash-blue/20 bg-white/80 backdrop-blur-sm`}>
+    <Sidebar className={`${isCollapsed ? 'w-16' : 'w-64'} border-r border-wash-blue/20 bg-white/80 backdrop-blur-sm`}>
       <SidebarHeader className="border-b border-wash-blue/20 p-4">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-wash-blue to-wash-cyan">
             <Droplets className="h-5 w-5 text-white" />
           </div>
-          {!collapsed && (
+          {!isCollapsed && (
             <div>
               <h2 className="font-bold text-wash-blue-dark">AquaClean</h2>
               <p className="text-xs text-muted-foreground">Car Wash Pro</p>
@@ -84,7 +85,7 @@ export function AppSidebar() {
       <SidebarContent className="p-2">
         <SidebarGroup>
           <SidebarGroupLabel className="text-wash-blue-dark font-semibold">
-            {!collapsed && (isAdmin ? 'Admin Panel' : 'User Panel')}
+            {!isCollapsed && (isAdmin ? 'Admin Panel' : 'User Panel')}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -96,7 +97,7 @@ export function AppSidebar() {
                       className={`flex items-center gap-3 rounded-lg p-3 transition-all duration-200 ${getNavClass(item.url)}`}
                     >
                       <item.icon className="h-5 w-5" />
-                      {!collapsed && <span className="font-medium">{item.title}</span>}
+                      {!isCollapsed && <span className="font-medium">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -113,7 +114,7 @@ export function AppSidebar() {
           className="w-full justify-start gap-3 text-red-600 hover:bg-red-50 hover:text-red-700"
         >
           <LogOut className="h-5 w-5" />
-          {!collapsed && 'Logout'}
+          {!isCollapsed && 'Logout'}
         </Button>
       </SidebarFooter>
     </Sidebar>
